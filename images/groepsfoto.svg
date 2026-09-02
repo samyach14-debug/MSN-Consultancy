@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" role="img" aria-label="Team MSN Consultancy">
+  <rect width="1200" height="640" fill="#0b192c"/>
+  <circle cx="980" cy="80" r="160" fill="#ffcc00" opacity="0.16"/>
+  <rect x="70" y="120" width="1060" height="420" rx="28" fill="#12243d"/>
+  <g fill="#1c3556">
+    <circle cx="250" cy="300" r="78"/>
+    <circle cx="420" cy="278" r="86"/>
+    <circle cx="600" cy="270" r="92"/>
+    <circle cx="780" cy="282" r="84"/>
+    <circle cx="950" cy="305" r="76"/>
+  </g>
+  <g fill="#ffcc00">
+    <circle cx="250" cy="300" r="18"/>
+    <circle cx="420" cy="278" r="18"/>
+    <circle cx="600" cy="270" r="18"/>
+    <circle cx="780" cy="282" r="18"/>
+    <circle cx="950" cy="305" r="18"/>
+  </g>
+  <text x="600" y="560" text-anchor="middle" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">MSN Consultancy</text>
+</svg>
