@@ -42,15 +42,31 @@
     });
   });
 
+  document.querySelectorAll(".logo-img, .footer-logo-img").forEach(function (img) {
+    function useWordmark() {
+      img.parentElement.classList.add("is-fallback");
+    }
+
+    img.addEventListener("error", useWordmark);
+    if (img.complete && img.naturalWidth === 0) {
+      useWordmark();
+    }
+  });
+
   document.querySelectorAll(".photo-frame img, .team-photo img").forEach(function (img) {
-    img.addEventListener("error", function () {
+    function handleMissing() {
       if (!img.dataset.fallbackTried && img.getAttribute("src") === "images/groepsfoto.jpg") {
         img.dataset.fallbackTried = "1";
         img.src = "images/groepsfoto.svg";
         return;
       }
       img.parentElement.classList.add("is-placeholder");
-    });
+    }
+
+    img.addEventListener("error", handleMissing);
+    if (img.complete && img.naturalWidth === 0) {
+      handleMissing();
+    }
   });
 
   function isValidEmail(value) {
@@ -62,13 +78,14 @@
       event.preventDefault();
 
       const name = form.name.value.trim();
+      const company = form.company.value.trim();
       const email = form.email.value.trim();
-      const message = form.message.value.trim();
+      const phone = form.phone.value.trim();
 
       status.classList.remove("success", "error");
 
-      if (!name || !email || !message) {
-        status.textContent = "Vul naam, e-mail en bericht in om het formulier te verzenden.";
+      if (!name || !company || !email || !phone) {
+        status.textContent = "Vul alle velden in, zodat wij u gericht kunnen benaderen.";
         status.classList.add("error");
         return;
       }
@@ -79,7 +96,13 @@
         return;
       }
 
-      status.textContent = "Bedankt. Uw bericht is ontvangen. We nemen zo snel mogelijk contact op.";
+      if (phone.replace(/\D/g, "").length < 8) {
+        status.textContent = "Vul een geldig telefoonnummer in.";
+        status.classList.add("error");
+        return;
+      }
+
+      status.textContent = "Bedankt voor uw aanvraag. Wij reageren op werkdagen binnen 24 uur.";
       status.classList.add("success");
       form.reset();
     });

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Neem contact op met MSN Consultancy voor een vrijblijvend adviesgesprek.">
+  <meta name="description" content="Neem contact op met MSN Consultancy. Wij reageren op werkdagen binnen 24 uur.">
   <title>Contact | MSN Consultancy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,8 +14,11 @@
   <header class="header">
     <div class="container nav-wrap">
       <a href="index.html" class="logo" aria-label="MSN Consultancy home">
-        <span class="logo-mark">MSN</span>
-        <span class="logo-text">Consultancy</span>
+        <img class="logo-img" src="images/logo.png" alt="MSN Consultancy">
+        <span class="logo-fallback">
+          <span class="logo-mark">MSN</span>
+          <span class="logo-text">Consultancy</span>
+        </span>
       </a>
       <button class="nav-toggle" id="navToggle" aria-label="Menu openen" aria-expanded="false" aria-controls="primaryNav">
         <span></span>
@@ -37,55 +40,58 @@
     <section class="page-hero">
       <div class="container page-hero-inner">
         <p class="eyebrow">Contact</p>
-        <h1>Laten we kennismaken. Eén gesprek kan al richting geven.</h1>
-        <p class="hero-sub">Stel uw vraag of vraag een vrijblijvend consult aan. We reageren persoonlijk en denken met u mee.</p>
+        <h1>Neem contact op met MSN Consultancy.</h1>
+        <p class="hero-sub">Laat uw gegevens achter en wij nemen het initiatief. Op werkdagen ontvangt u binnen 24 uur een reactie van een van onze consultants.</p>
       </div>
     </section>
 
     <section class="section section-light">
       <div class="container contact-layout">
         <form class="contact-form" id="contactForm" novalidate>
+          <h2 class="form-title">Aanvraag indienen</h2>
+          <p class="form-intro">Vul uw gegevens in. Wij bellen of mailen u voor een korte, vrijblijvende kennismaking.</p>
           <div class="form-field">
-            <label for="name">Naam</label>
+            <label for="name">Volledige naam</label>
             <input type="text" id="name" name="name" autocomplete="name" required>
           </div>
           <div class="form-field">
-            <label for="email">E-mail</label>
+            <label for="company">Bedrijfsnaam</label>
+            <input type="text" id="company" name="company" autocomplete="organization" required>
+          </div>
+          <div class="form-field">
+            <label for="email">E-mailadres</label>
             <input type="email" id="email" name="email" autocomplete="email" required>
           </div>
           <div class="form-field">
             <label for="phone">Telefoonnummer</label>
-            <input type="tel" id="phone" name="phone" autocomplete="tel">
-          </div>
-          <div class="form-field">
-            <label for="message">Bericht</label>
-            <textarea id="message" name="message" rows="6" required></textarea>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" required>
           </div>
           <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-          <button type="submit" class="btn btn-primary">Bericht verzenden</button>
+          <button type="submit" class="btn btn-primary btn-block">Aanvraag Verzenden</button>
+          <p class="form-note">Wij gebruiken uw gegevens uitsluitend om contact met u op te nemen.</p>
         </form>
 
         <aside class="contact-card">
-          <h3>Contactgegevens</h3>
+          <h2 class="contact-card-title">Contactgegevens</h2>
           <ul class="contact-details">
             <li>
               <strong>Adres</strong>
-              Keizersgracht 125<br>
-              1015 CJ Amsterdam
+              Onderwijsboulevard 300<br>
+              5223 DP ’s-Hertogenbosch
             </li>
             <li>
               <strong>E-mail</strong>
-              <a href="mailto:info@msnconsultancy.nl">info@msnconsultancy.nl</a>
+              <a href="mailto:info@msn-consultancy.nl">info@msn-consultancy.nl</a>
             </li>
             <li>
-              <strong>Telefoon</strong>
-              <a href="tel:+31201234567">020 123 45 67</a>
-            </li>
-            <li>
-              <strong>Bereikbaarheid</strong>
+              <strong>Openingstijden</strong>
               Maandag t/m vrijdag, 09:00 – 17:30
             </li>
           </ul>
+          <div class="response-note">
+            <p class="response-title">Reactie binnen 24 uur</p>
+            <p>Aanvragen die op een werkdag binnenkomen, beantwoorden wij binnen 24 uur.</p>
+          </div>
         </aside>
       </div>
     </section>
@@ -94,10 +100,13 @@
   <footer class="footer">
     <div class="container footer-grid">
       <div>
-        <p class="logo footer-logo">
-          <span class="logo-mark">MSN</span>
-          <span class="logo-text">Consultancy</span>
-        </p>
+        <a href="index.html" class="footer-brand" aria-label="MSN Consultancy home">
+          <img class="footer-logo-img" src="images/logo.png" alt="MSN Consultancy">
+          <span class="logo-fallback">
+            <span class="logo-mark">MSN</span>
+            <span class="logo-text">Consultancy</span>
+          </span>
+        </a>
         <p class="footer-copy">© 2026 MSN Consultancy. Alle rechten voorbehouden.</p>
       </div>
       <div>
@@ -112,9 +121,9 @@
       <div>
         <h3>Contact</h3>
         <ul class="footer-links">
-          <li><a href="mailto:info@msnconsultancy.nl">info@msnconsultancy.nl</a></li>
-          <li><a href="tel:+31201234567">020 123 45 67</a></li>
-          <li>Keizersgracht 125, Amsterdam</li>
+          <li><a href="mailto:info@msn-consultancy.nl">info@msn-consultancy.nl</a></li>
+          <li>Onderwijsboulevard 300</li>
+          <li>5223 DP ’s-Hertogenbosch</li>
         </ul>
       </div>
     </div>

@@ -193,7 +193,7 @@ p {
 
 .logo {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.45rem;
   color: var(--color-text-on-dark);
   font-weight: 800;
@@ -201,6 +201,28 @@ p {
 
 .logo:hover {
   color: var(--color-text-on-dark);
+}
+
+.logo-img {
+  max-height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-fallback {
+  display: none;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.logo.is-fallback .logo-img,
+.footer-brand.is-fallback .footer-logo-img {
+  display: none;
+}
+
+.logo.is-fallback .logo-fallback,
+.footer-brand.is-fallback .logo-fallback {
+  display: flex;
 }
 
 .logo-mark {
@@ -312,6 +334,10 @@ p {
   gap: 1.15rem;
 }
 
+.cards-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .card {
   background: var(--color-white);
   border: 1px solid var(--color-border-light);
@@ -367,6 +393,10 @@ p {
   grid-template-columns: 1.15fr 0.85fr;
   gap: 2.4rem;
   align-items: center;
+}
+
+.contact-layout {
+  align-items: start;
 }
 
 .vision-panel {
@@ -433,7 +463,7 @@ p {
 }
 
 .photo-frame.is-placeholder::after {
-  content: "Teamfoto volgt hier";
+  content: "Informele groepsfoto volgt hier";
   position: absolute;
   inset: 0;
   display: grid;
@@ -455,6 +485,8 @@ p {
 }
 
 .team-card {
+  display: flex;
+  flex-direction: column;
   background: var(--color-white);
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius);
@@ -474,7 +506,15 @@ p {
 }
 
 .team-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
   padding: 1.1rem 1.15rem 1.25rem;
+}
+
+.team-body p:last-child {
+  margin-bottom: 0;
 }
 
 .team-role {
@@ -493,6 +533,27 @@ p {
   color: var(--color-navy);
   font-size: 0.75rem;
   font-weight: 700;
+}
+
+.method-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.method-card {
+  background: var(--color-navy-elevated);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+}
+
+.method-card h3 {
+  color: var(--color-text-on-dark);
+}
+
+.method-card p:last-child {
+  margin-bottom: 0;
 }
 
 .service-stack {
@@ -550,8 +611,32 @@ p {
   box-shadow: var(--shadow);
 }
 
-.contact-card h3 {
+.contact-card h3,
+.contact-card-title {
   margin-bottom: 1rem;
+}
+
+.contact-card-title {
+  font-size: 1.3rem;
+}
+
+.response-note {
+  margin-top: 1.4rem;
+  padding: 1rem 1.1rem;
+  border-left: 4px solid var(--color-accent);
+  border-radius: 8px;
+  background: var(--color-light);
+}
+
+.response-title {
+  margin-bottom: 0.3rem;
+  color: var(--color-navy);
+  font-weight: 700;
+}
+
+.response-note p:last-child {
+  margin-bottom: 0;
+  font-size: 0.92rem;
 }
 
 .contact-details {
@@ -598,6 +683,27 @@ p {
   font-weight: 600;
 }
 
+.form-intro {
+  margin: 0 0 1.1rem;
+  color: var(--color-navy);
+  font-weight: 600;
+}
+
+.form-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.35rem;
+}
+
+.form-note {
+  margin: 0.9rem 0 0;
+  color: var(--color-body-on-light);
+  font-size: 0.82rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
 .form-field input,
 .form-field textarea {
   width: 100%;
@@ -613,6 +719,11 @@ p {
 .form-field textarea:focus {
   outline: 2px solid var(--color-accent);
   outline-offset: 1px;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #7a8796;
 }
 
 .form-status {
@@ -648,8 +759,23 @@ p {
   gap: 2rem;
 }
 
-.footer-logo {
-  margin-bottom: 0.8rem;
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.9rem;
+  color: var(--color-text-on-dark);
+  font-weight: 800;
+}
+
+.footer-brand:hover {
+  color: var(--color-text-on-dark);
+}
+
+.footer-logo-img {
+  max-height: 34px;
+  width: auto;
+  object-fit: contain;
 }
 
 .footer-copy {
@@ -677,7 +803,9 @@ p {
 
 @media (max-width: 980px) {
   .cards-grid,
+  .cards-grid-3,
   .team-grid,
+  .method-grid,
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -730,7 +858,9 @@ p {
   }
 
   .cards-grid,
+  .cards-grid-3,
   .team-grid,
+  .method-grid,
   .footer-grid {
     grid-template-columns: 1fr;
   }
