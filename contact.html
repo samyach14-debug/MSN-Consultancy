@@ -13,13 +13,7 @@
 <body>
   <header class="header">
     <div class="container nav-wrap">
-      <a href="index.html" class="logo" aria-label="MSN Consultancy home">
-        <img class="logo-img" src="images/logo.png" alt="MSN Consultancy">
-        <span class="logo-fallback">
-          <span class="logo-mark">MSN</span>
-          <span class="logo-text">Consultancy</span>
-        </span>
-      </a>
+      <a href="index.html" class="logo" aria-label="MSN Consultancy home">MSN <span class="logo-accent">Consultancy</span></a>
       <button class="nav-toggle" id="navToggle" aria-label="Menu openen" aria-expanded="false" aria-controls="primaryNav">
         <span></span>
         <span></span>
@@ -31,6 +25,7 @@
           <li><a href="over-ons.html" class="nav-link">Over Ons</a></li>
           <li><a href="diensten.html" class="nav-link">Diensten</a></li>
           <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li class="nav-cta-item"><a href="contact.html" class="btn btn-primary nav-cta">Neem contact op</a></li>
         </ul>
       </nav>
     </div>
@@ -47,7 +42,7 @@
 
     <section class="section section-light">
       <div class="container contact-layout">
-        <form class="contact-form" id="contactForm" novalidate>
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xjyvoypo" method="POST" novalidate>
           <h2 class="form-title">Aanvraag indienen</h2>
           <p class="form-intro">Vul uw gegevens in. Wij bellen of mailen u voor een korte, vrijblijvende kennismaking.</p>
           <div class="form-field">
@@ -66,10 +61,21 @@
             <label for="phone">Telefoonnummer</label>
             <input type="tel" id="phone" name="phone" autocomplete="tel" required>
           </div>
+          <div class="form-field">
+            <label for="message">Bericht <span class="optional">(optioneel)</span></label>
+            <textarea id="message" name="message" rows="4" placeholder="Waar loopt het bij jullie vast?"></textarea>
+          </div>
           <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
           <button type="submit" class="btn btn-primary btn-block">Aanvraag Verzenden</button>
           <p class="form-note">Wij gebruiken uw gegevens uitsluitend om contact met u op te nemen.</p>
         </form>
+
+        <div class="form-success" id="formSuccess" role="status" aria-live="polite" tabindex="-1" hidden>
+          <span class="form-success-icon" aria-hidden="true">✓</span>
+          <h2>Bedankt, je bericht is verzonden.</h2>
+          <p>We nemen zo snel mogelijk contact op. Op werkdagen reageren we binnen 24 uur.</p>
+          <p class="form-note">Liever direct schakelen? Mail ons op <a href="mailto:info@msn-consultancy.nl">info@msn-consultancy.nl</a>.</p>
+        </div>
 
         <aside class="contact-card">
           <h2 class="contact-card-title">Contactgegevens</h2>
@@ -100,13 +106,7 @@
   <footer class="footer">
     <div class="container footer-grid">
       <div>
-        <a href="index.html" class="footer-brand" aria-label="MSN Consultancy home">
-          <img class="footer-logo-img" src="images/logo.png" alt="MSN Consultancy">
-          <span class="logo-fallback">
-            <span class="logo-mark">MSN</span>
-            <span class="logo-text">Consultancy</span>
-          </span>
-        </a>
+        <a href="index.html" class="footer-brand" aria-label="MSN Consultancy home">MSN <span class="logo-accent">Consultancy</span></a>
         <p class="footer-copy">© 2026 MSN Consultancy. Alle rechten voorbehouden.</p>
       </div>
       <div>

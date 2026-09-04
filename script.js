@@ -4,6 +4,7 @@
   const navLinks = document.querySelectorAll(".nav-link");
   const form = document.getElementById("contactForm");
   const status = document.getElementById("formStatus");
+  const success = document.getElementById("formSuccess");
 
   function currentPage() {
     const file = window.location.pathname.split("/").pop();
@@ -42,17 +43,6 @@
     });
   });
 
-  document.querySelectorAll(".logo-img, .footer-logo-img").forEach(function (img) {
-    function useWordmark() {
-      img.parentElement.classList.add("is-fallback");
-    }
-
-    img.addEventListener("error", useWordmark);
-    if (img.complete && img.naturalWidth === 0) {
-      useWordmark();
-    }
-  });
-
   document.querySelectorAll(".photo-frame img, .team-photo img").forEach(function (img) {
     function handleMissing() {
       if (!img.dataset.fallbackTried && img.getAttribute("src") === "images/groepsfoto.jpg") {
@@ -74,37 +64,79 @@
   }
 
   if (form && status) {
+    const submitButton = form.querySelector("button[type='submit']");
+    const submitLabel = submitButton ? submitButton.textContent : "";
+
+    function showStatus(message, state) {
+      status.textContent = message;
+      status.classList.remove("success", "error");
+      status.classList.add(state);
+    }
+
+    function setSending(isSending) {
+      if (!submitButton) {
+        return;
+      }
+      submitButton.disabled = isSending;
+      submitButton.textContent = isSending ? "Versturen…" : submitLabel;
+    }
+
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      const name = form.name.value.trim();
-      const company = form.company.value.trim();
-      const email = form.email.value.trim();
-      const phone = form.phone.value.trim();
-
-      status.classList.remove("success", "error");
+      const fields = form.elements;
+      const name = fields.name.value.trim();
+      const company = fields.company.value.trim();
+      const email = fields.email.value.trim();
+      const phone = fields.phone.value.trim();
 
       if (!name || !company || !email || !phone) {
-        status.textContent = "Vul alle velden in, zodat wij u gericht kunnen benaderen.";
-        status.classList.add("error");
+        showStatus("Vul alle verplichte velden in, zodat wij u gericht kunnen benaderen.", "error");
         return;
       }
 
       if (!isValidEmail(email)) {
-        status.textContent = "Vul een geldig e-mailadres in.";
-        status.classList.add("error");
+        showStatus("Vul een geldig e-mailadres in.", "error");
         return;
       }
 
       if (phone.replace(/\D/g, "").length < 8) {
-        status.textContent = "Vul een geldig telefoonnummer in.";
-        status.classList.add("error");
+        showStatus("Vul een geldig telefoonnummer in.", "error");
         return;
       }
 
-      status.textContent = "Bedankt voor uw aanvraag. Wij reageren op werkdagen binnen 24 uur.";
-      status.classList.add("success");
-      form.reset();
+      setSending(true);
+      showStatus("Uw aanvraag wordt verzonden…", "success");
+
+      fetch(form.action, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form)
+      })
+        .then(function (response) {
+          if (response.ok) {
+            form.reset();
+            if (success) {
+              showStatus("", "success");
+              form.hidden = true;
+              success.hidden = false;
+              success.focus();
+            } else {
+              showStatus("Bedankt, je bericht is verzonden. We nemen zo snel mogelijk contact op.", "success");
+            }
+            return;
+          }
+          throw new Error("Formspree gaf status " + response.status);
+        })
+        .catch(function () {
+          showStatus(
+            "Het verzenden is niet gelukt. Probeer het later opnieuw of mail ons direct op info@msn-consultancy.nl.",
+            "error"
+          );
+        })
+        .finally(function () {
+          setSending(false);
+        });
     });
   }
 })();
